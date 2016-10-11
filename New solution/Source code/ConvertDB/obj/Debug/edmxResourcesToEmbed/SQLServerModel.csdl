@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SQLServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="MRN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="HomePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobilePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ReportDatas" Relationship="SQLServerModel.FK_ReportData_Patient" FromRole="Patient" ToRole="ReportData" />
+  </EntityType>
+  <EntityContainer Name="SQLServerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <EntitySet Name="ReportDatas" EntityType="SQLServerModel.ReportData" />
+    <AssociationSet Name="FK_ReportData_Patient" Association="SQLServerModel.FK_ReportData_Patient">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="ReportData" EntitySet="ReportDatas" />
+    </AssociationSet>
+    <EntitySet Name="Prescriptions" EntityType="SQLServerModel.Prescription" />
+    <AssociationSet Name="FK_Prescription_ReportData" Association="SQLServerModel.FK_Prescription_ReportData">
+      <End Role="ReportData" EntitySet="ReportDatas" />
+      <End Role="Prescription" EntitySet="Prescriptions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ReportData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PatientId" Type="Guid" Nullable="false" />
+    <Property Name="MRN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VisitNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Old" Type="Int64" />
+    <Property Name="TestID" Type="Int32" />
+    <Property Name="TestName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Report" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ImpressionConclusion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ProcedureDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Patient" Relationship="SQLServerModel.FK_ReportData_Patient" FromRole="ReportData" ToRole="Patient" />
+    <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Prescriptions" Relationship="SQLServerModel.FK_Prescription_ReportData" FromRole="ReportData" ToRole="Prescription" />
+  </EntityType>
+  <Association Name="FK_ReportData_Patient">
+    <End Type="SQLServerModel.Patient" Role="Patient" Multiplicity="1" />
+    <End Type="SQLServerModel.ReportData" Role="ReportData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportData">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ReportDataId" Type="Guid" Nullable="false" />
+    <Property Name="DrugCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DrugDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Dosage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Route" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Frequency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Cautionary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Instruction" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialInstruction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="DoctorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ReportData" Relationship="SQLServerModel.FK_Prescription_ReportData" FromRole="Prescription" ToRole="ReportData" />
+  </EntityType>
+  <Association Name="FK_Prescription_ReportData">
+    <End Type="SQLServerModel.ReportData" Role="ReportData" Multiplicity="1" />
+    <End Type="SQLServerModel.Prescription" Role="Prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Prescription">
+        <PropertyRef Name="ReportDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

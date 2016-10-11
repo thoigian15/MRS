@@ -1,0 +1,1 @@
+ALTER TABLE `wv_hs_patient_data` DROP PRIMARY KEY, ADD PRIMARY KEY( `type`, `id_patient`, `visit_number`);

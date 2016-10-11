@@ -1,1 +1,14 @@
 E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\ConvertDB.exe.config
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\ConvertDB.exe
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\ConvertDB.pdb
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\EntityFramework.dll
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\EntityFramework.SqlServer.dll
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\MySql.Data.dll
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\MySql.Data.Entity.EF6.dll
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\EntityFramework.xml
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\EntityFramework.SqlServer.xml
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\obj\Debug\ConvertDB.csprojResolveAssemblyReference.cache
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\obj\Debug\ConvertDB.exe
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\obj\Debug\ConvertDB.pdb
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\Newtonsoft.Json.dll
+E:\Google Drive\Web project\MRS\New solution\Source code\ConvertDB\bin\Debug\Newtonsoft.Json.xml
