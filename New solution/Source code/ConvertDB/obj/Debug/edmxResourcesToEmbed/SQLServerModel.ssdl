@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SQLServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MRN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Birthday" Type="date" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="HomePhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobilePhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ReportDataId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DrugCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DrugDescription" Type="nvarchar" MaxLength="250" />
+    <Property Name="Dosage" Type="nvarchar" MaxLength="50" />
+    <Property Name="Route" Type="nvarchar" MaxLength="50" />
+    <Property Name="Frequency" Type="nvarchar" MaxLength="50" />
+    <Property Name="Duration" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cautionary" Type="nvarchar" MaxLength="50" />
+    <Property Name="Instruction" Type="nvarchar" MaxLength="250" />
+    <Property Name="SpecialInstruction" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="DoctorName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ReportData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PatientId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MRN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="VisitNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_Old" Type="bigint" />
+    <Property Name="TestID" Type="int" />
+    <Property Name="TestName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Report" Type="nvarchar(max)" />
+    <Property Name="ImpressionConclusion" Type="nvarchar(max)" />
+    <Property Name="ProcedureDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="250" />
+    <Property Name="Content" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Prescription_ReportData">
+    <End Role="ReportData" Type="Self.ReportData" Multiplicity="1" />
+    <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReportData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Prescription">
+        <PropertyRef Name="ReportDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportData_Patient">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="ReportData" Type="Self.ReportData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReportData">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SQLServerModelStoreContainer">
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReportData" EntityType="Self.ReportData" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Prescription_ReportData" Association="Self.FK_Prescription_ReportData">
+      <End Role="ReportData" EntitySet="ReportData" />
+      <End Role="Prescription" EntitySet="Prescription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportData_Patient" Association="Self.FK_ReportData_Patient">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="ReportData" EntitySet="ReportData" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

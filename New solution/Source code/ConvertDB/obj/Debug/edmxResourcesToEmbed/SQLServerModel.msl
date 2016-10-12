@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SQLServerModelStoreContainer" CdmEntityContainer="SQLServerEntities">
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="SQLServerModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MRN" ColumnName="MRN" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportDatas">
+      <EntityTypeMapping TypeName="SQLServerModel.ReportData">
+        <MappingFragment StoreEntitySet="ReportData">
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ProcedureDescription" ColumnName="ProcedureDescription" />
+          <ScalarProperty Name="ImpressionConclusion" ColumnName="ImpressionConclusion" />
+          <ScalarProperty Name="Report" ColumnName="Report" />
+          <ScalarProperty Name="TestName" ColumnName="TestName" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="ID_Old" ColumnName="ID_Old" />
+          <ScalarProperty Name="VisitNumber" ColumnName="VisitNumber" />
+          <ScalarProperty Name="MRN" ColumnName="MRN" />
+          <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prescriptions">
+      <EntityTypeMapping TypeName="SQLServerModel.Prescription">
+        <MappingFragment StoreEntitySet="Prescription">
+          <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="SpecialInstruction" ColumnName="SpecialInstruction" />
+          <ScalarProperty Name="Instruction" ColumnName="Instruction" />
+          <ScalarProperty Name="Cautionary" ColumnName="Cautionary" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+          <ScalarProperty Name="Route" ColumnName="Route" />
+          <ScalarProperty Name="Dosage" ColumnName="Dosage" />
+          <ScalarProperty Name="DrugDescription" ColumnName="DrugDescription" />
+          <ScalarProperty Name="DrugCode" ColumnName="DrugCode" />
+          <ScalarProperty Name="ReportDataId" ColumnName="ReportDataId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
