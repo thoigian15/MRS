@@ -60,9 +60,10 @@ namespace ConvertDB
                 List<wv_hs_patient_data> data = null;
                 while ((data != null && data.Count > 0) || count == 0)
                 {
-                    data = mySQL.Datas.Where(d=>d.id_patient.CompareTo("YICS-0000000001")>=0 && 
-                                                d.id_patient.CompareTo("YICS-0000000005") <= 0)
-                                    .OrderBy(d=>d.id_patient).Skip(count).Take(5000).ToList();
+                    data = mySQL.Datas.Where(d=>d.id_patient.CompareTo("YICS-0000000201") >=0 //&& 
+                                                //d.id_patient.CompareTo("YICS-0000000500") <= 0
+                                                )
+                                    .OrderBy(d=>d.id_patient).Skip(count).Take(500).ToList();
                     if (data != null && data.Count > 0)
                         Console.WriteLine(count + " >> " + data[0].type + " " + data[0].id_patient + " " + data[0].visit_number);
                     foreach (var item in data)
@@ -180,6 +181,7 @@ namespace ConvertDB
                                 break;
                         }
                         count++;
+                        //dbSQLServer.SaveChanges();
                     }
                     if (data != null && data.Count > 0)
                         Console.WriteLine(count + " >> " + data[data.Count-1].type + " " + data[data.Count - 1].id_patient + " " + data[data.Count - 1].visit_number);
