@@ -76,6 +76,7 @@ namespace ConvertDB
                         switch (type)
                         {
                             case "imaging":
+                            case "noisoi":
                                 json = JObject.Parse(item.data);
                                 dbSQLServer.ReportDatas.Add(new ReportData()
                                 {
@@ -138,26 +139,22 @@ namespace ConvertDB
                                     Type = type,
                                     VisitNumber = item.visit_number.Trim()
                                 };
-                                dbSQLServer.ReportDatas.Add(rnew);
-                                for (int i = 0; i < jsonArr.Count; i++)
+                                break;
+                            case "lab":
+                                json = JObject.Parse(item.data);
+                                dbSQLServer.ReportDatas.Add(new ReportData()
                                 {
-                                    dbSQLServer.Prescriptions.Add(new Prescription()
-                                    {
-                                        Cautionary = Convert.ToString(jsonArr[i]["Cautionary"]),
-                                        CreatedDate = DateTime.ParseExact(Convert.ToString(jsonArr[0]["CreatedDate"]), "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture),
-                                        DoctorName = Convert.ToString(jsonArr[i]["DoctorName"]),
-                                        Dosage = Convert.ToString(jsonArr[i]["Dosage"]),
-                                        DrugCode = Convert.ToString(jsonArr[i]["DrugCode"]),
-                                        DrugDescription = Convert.ToString(jsonArr[i]["DrugDescription"]),
-                                        Duration = Convert.ToString(jsonArr[i]["Duration"]),
-                                        Frequency = Convert.ToString(jsonArr[i]["Frequency"]),
-                                        Id = Guid.NewGuid(),
-                                        Instruction = Convert.ToString(jsonArr[i]["Instruction"]),
-                                        ReportDataId = rnew.Id,
-                                        Route = Convert.ToString(jsonArr[i]["Route"]),
-                                        SpecialInstruction = Convert.ToString(jsonArr[i]["SpecialInstruction"])
-                                    });
-                                }
+                                    CreatedDate = DateTime.ParseExact(Convert.ToString(json["CreatedDate"]), "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture),
+                                    Id = Guid.NewGuid(),
+                                    ID_Old = Convert.ToInt32(json["ID"]),
+                                    Description = Convert.ToString(json["Description"]),
+                                    NormalResult = Convert.ToString(json["NormalResult"]),
+                                    MRN = item.id_patient.Trim(),
+                                    PatientId = patient.Id,
+                                    Result = Convert.ToString(json["Result"]),
+                                    Type = type,
+                                    VisitNumber = item.visit_number.Trim()
+                                });
                                 break;
                             default:
                                 json = JObject.Parse(item.data);

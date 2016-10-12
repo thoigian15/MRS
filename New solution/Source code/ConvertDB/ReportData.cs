@@ -36,6 +36,9 @@ namespace ConvertDB
         public string LastName { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public string NormalResult { get; set; }
+        public string Result { get; set; }
+        public string Description { get; set; }
     
         public virtual Patient Patient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

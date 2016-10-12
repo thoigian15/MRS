@@ -59,6 +59,9 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Title" Type="nvarchar" MaxLength="250" />
           <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="NormalResult" Type="nvarchar" MaxLength="250" />
+          <Property Name="Result" Type="nvarchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <Association Name="FK_Prescription_ReportData">
           <End Role="ReportData" Type="Self.ReportData" Multiplicity="1" />
@@ -153,6 +156,9 @@
           <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Prescriptions" Relationship="SQLServerModel.FK_Prescription_ReportData" FromRole="ReportData" ToRole="Prescription" />
+          <Property Name="NormalResult" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_ReportData_Patient">
           <End Type="SQLServerModel.Patient" Role="Patient" Multiplicity="1" />
@@ -223,6 +229,9 @@
           <EntitySetMapping Name="ReportDatas">
             <EntityTypeMapping TypeName="SQLServerModel.ReportData">
               <MappingFragment StoreEntitySet="ReportData">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="NormalResult" ColumnName="NormalResult" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
